@@ -1,7 +1,3 @@
-{%- comment -%}
-Paste the code as it is after creating the section named testimonial.
-{%- endcomment -%}
-
 {% if section.settings.enable_testimonial_section %}
 <div class="page-width">
   {% if section.settings.title != blank %}
@@ -90,10 +86,19 @@ Paste the code as it is after creating the section named testimonial.
 	margin: 5px;
 	border-radius: 10px;
 }
-  .spaced-testimonial-section {
+  .testimonial-section {
 	padding-top: 50px;
 	padding-bottom: 50px;
 	background-color: #fffbf2;
+}
+/*   .slick-prev {
+	left: -15px;
+}
+  .testimonial-section .slick-next {
+	left: -15px;
+} */
+  .testimonial-section .slick-dots {
+	bottom: 0;
 }
 </style>
 
@@ -162,7 +167,28 @@ Paste the code as it is after creating the section named testimonial.
                 infinite: true,
                 slidesToShow: 4,
                 slidesToScroll: 1,
-              autoplay: true
+              autoplay: true,
+                      responsive: [{
+                          breakpoint: 1200,
+                          settings: {
+                              slidesToShow: 4,
+                              slidesToScroll: 1,
+                          }
+                      },{
+                          breakpoint: 1023,
+                          settings: {
+                              slidesToShow: 3,
+                              slidesToScroll: 1,
+                          }
+                      },
+                      {
+                          breakpoint: 650,
+                          settings: {
+                              slidesToShow: 1,
+                              slidesToScroll: 1,
+                          }
+                      }
+                      ]
             });
         });
   </script>
