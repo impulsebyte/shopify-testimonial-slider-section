@@ -1,0 +1,168 @@
+{%- comment -%}
+Paste the code as it is after creating the section named testimonial.
+{%- endcomment -%}
+
+{% if section.settings.enable_testimonial_section %}
+<div class="page-width">
+  {% if section.settings.title != blank %}
+  <div class="text-center">
+    <h4 class="testimonial-title">{{ section.settings.title | escape }}</h4>
+  </div>
+  {% endif %}
+
+  <div class="testimonial-section" id="testimonial-slide">
+    {% for block in section.blocks %}
+    <div class="custom-block testimonial">
+      <div class="custom__item-inner custom__item-inner–{{ block.type }}">
+
+        <div class="testimonial-block">
+          <div class="text-block">
+            {% if block.settings.titletext != blank %}
+            <p class="user-name">{{ block.settings.titletext }}</p>
+            {% endif %}
+            {% if block.settings.place_text != blank %}
+            <p class="place">{{ block.settings.place_text }}</p>
+            {% endif %}
+            {% if block.settings.review_text != blank %}
+            <p class="review">{{ block.settings.review_text }}</p>
+            {% endif %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+{% endif %}
+
+<style>
+  .custom-block{
+    float:left;
+    width:33%
+  }
+  .testimonial-title{
+    font-size:50px;
+    margin:10px 0 20px 0;
+  }
+  .testimonial-image{
+    border-radius:50%;
+    width:100%;
+  }
+  .image-block{
+    width:40%;
+    margin-left:30%;
+    height: 180px;
+  }
+  .text-block{
+    width: 80%;
+    margin-left: 10%;
+  }
+  .user-name{
+    text-align:left;
+    font-size:30px;
+    font-weight:bold;
+    margin-bottom: -10px;
+  }
+  .place{
+    text-align:left;
+    font-size:16px;
+    font-weight:normal;
+    margin-bottom: 10px;
+  }
+  .review{
+    text-align:left;
+    font-weight:normal;
+  }
+  @media (max-width:768px){
+    .testimonial-title{
+      font-size:30px;
+    }
+  }
+  @media (max-width:480px){
+    .testimonial-title{
+      font-size:25px;
+    }
+  }
+  .custom-block.testimonial {
+	background-color: #f6f2e9;
+	margin: 5px;
+	border-radius: 10px;
+}
+  .spaced-testimonial-section {
+	padding-top: 50px;
+	padding-bottom: 50px;
+	background-color: #fffbf2;
+}
+</style>
+
+{% schema %}
+{
+"class": "testimonial-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_testimonial_section",
+      "label": "Enable Testimonial Section",
+          "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Custom content"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Testimonial Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "titletext",
+          "label": "User Name"
+        },
+        {
+          "type": "text",
+          "id": "place_text",
+          "label": "Designation"
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Review"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial",
+      "category": "Testimonial Section",
+      "blocks": [
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js" defer=”defer”></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js" defer=”defer”></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" rel="stylesheet" />
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            $("#testimonial-slide").slick({
+                dots: true,
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+              autoplay: true
+            });
+        });
+  </script>
